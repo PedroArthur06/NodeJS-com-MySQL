@@ -1,0 +1,39 @@
+* {
+  font-family: Helvetica;
+}
+
+body {
+  background-color: #f0f0f0;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  color: #2c3e50;
+  text-align: center;
+}
+
+.form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-control {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-control label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-control input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
