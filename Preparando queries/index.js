@@ -21,9 +21,8 @@ app.post('/books/insertbooks', (req, res) => {
   const tittle = req.body.tittle;
   const pages = req.body.pages;
 
-  const query = 'INSERT INTO books (?, ?) VALUES (?, ?)';
-  const data = ['tittle', 'pages', tittle, pages];
-  pool.query(query, data, (err) => { 
+  const query = 'INSERT INTO books (tittle, pages) VALUES (?, ?)';
+  pool.query(query, [tittle, pages], (err) => { 
     if (err) {
       console.error('Erro ao inserir dados:', err);
       res.status(500).send('Erro ao inserir dados');
