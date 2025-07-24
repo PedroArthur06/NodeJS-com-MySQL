@@ -3,6 +3,7 @@ const { engine } = require('express-handlebars');
 const mysql = require('mysql2');
 
 const app = express();
+
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.use(express.static('public'));
@@ -31,11 +32,11 @@ app.post('/books/insertbooks', (req, res) => {
   });
 });
 
-app.get('/books/:idbooks', (req, res) => {
-  const id = req.params.idbooks;
+app.get('/books/:id', (req, res) => {
+  const id = req.params.id;
   
   const query = 'SELECT * FROM books WHERE idbooks = ?';
-  conn.query(query, [idbooks], (err, results) => {
+  conn.query(query, [id], (err, results) => {
     if (err) {
       console.error('Erro ao buscar dados:', err);
       res.status(500).send('Erro ao buscar dados');
@@ -59,6 +60,13 @@ app.get('/books', (req, res) => {
       res.status(500).send('Erro ao buscar dados');
       return;
     }
+
+    console.log('Livros encontrados:', results);
+    console.log('Exemplo de livro:', results[0] ? {
+      idbooks: results[0].idbooks,
+      title: results[0].title,
+      pages: results[0].pages
+    } : 'Nenhum livro encontrado');
 
     res.render('books', { books: results });
   });
